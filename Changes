@@ -1,0 +1,7 @@
+Revision history for Perl::Strip
+
+1.0  Sun Jan  9 11:07:43 CET 2011
+	- d'oh, almost forgot to release it.
+
+0.0  Thu Jan  6 06:18:53 CET 2011
+	- original version, an AnyEvent::DBI clone.

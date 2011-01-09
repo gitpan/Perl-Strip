@@ -1,0 +1,9 @@
+README
+MANIFEST
+COPYING
+Changes
+Makefile.PL
+Strip.pm
+bin/perlstrip
+t/00_load.t
+META.yml                                 Module meta-data (added by MakeMaker)
