@@ -31,6 +31,13 @@ METHODS
             By default, this module optimises *compressability*, not raw
             size. This switch changes that (and makes it slower).
 
+        keep_nl => $bool
+            By default, whitespace will either be stripped or replaced by a
+            space. If this option is enabled, then newlines will not be
+            removed. This has the advantage of keeping line number
+            information intact (e.g. for backtraces), but of course doesn't
+            compress as well.
+
         cache => $path
             Since this module can take a very long time (minutes for the
             larger files in the perl distribution), it can utilise a cache

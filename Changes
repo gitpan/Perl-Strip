@@ -1,5 +1,16 @@
 Revision history for Perl::Strip
 
+TODO: bang-path-protection
+TODO: keep_nl
+TODO: => => ,
+
+1.1  Mon Jan 23 03:24:08 CET 2012
+	- optimise_size would break some unicore files.
+        - detect 5.8 mktables files.
+	- bumped cache versaion to 2 - delete your caches to save space.
+	- fix perlstrip pod.
+        - improve optimise_size stripping efficiency for unicore files.
+
 1.0  Sun Jan  9 11:07:43 CET 2011
 	- d'oh, almost forgot to release it.
 

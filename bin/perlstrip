@@ -77,7 +77,7 @@ created if it doesn't exist yet).
 
 =back
 
-=item SEE ALSO
+=head1 SEE ALSO
 
 L<App::Staticperl>, L<Perl::Squish>.
 

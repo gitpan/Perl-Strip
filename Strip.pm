@@ -31,8 +31,8 @@ inherits all of it's methods, even the ones not documented here.
 
 package Perl::Strip;
 
-our $VERSION = '1.0';
-our $CACHE_VERSION = 1;
+our $VERSION = '1.1';
+our $CACHE_VERSION = 2;
 
 use common::sense;
 
@@ -52,6 +52,13 @@ parameters:
 By default, this module optimises I<compressability>, not raw size. This
 switch changes that (and makes it slower).
 
+=item keep_nl => $bool
+
+By default, whitespace will either be stripped or replaced by a space. If
+this option is enabled, then newlines will not be removed. This has the
+advantage of keeping line number information intact (e.g. for backtraces),
+but of course doesn't compress as well.
+
 =item cache => $path
 
 Since this module can take a very long time (minutes for the larger files
@@ -69,7 +76,7 @@ sub document {
    $self->{optimise_size} = 1; # more research is needed
 
    # special stripping for unicore/ files
-   if (eval { $doc->child (1)->content =~ /^# .* machine-generated .*mktables / }) {
+   if (eval { $doc->child (1)->content =~ /^# .* (build by mktables|machine-generated .*mktables) / }) {
 
       for my $heredoc (@{ $doc->find (PPI::Token::HereDoc::) }) {
          my $src = join "", $heredoc->heredoc;
@@ -77,7 +84,7 @@ sub document {
          # special stripping for unicore swashes and properties
          # much more could be done by going binary
          for ($src) {
-            s/^([0-9a-fA-F]+)\t([0-9a-fA-F]+)\t/sprintf "%X\t%X", hex $1, hex $2/gem
+            s/^(?:0*([0-9a-fA-F]+))?\t(?:0*([0-9a-fA-F]+))?\t(?:0*([0-9a-fA-F]+))?/$1\t$2\t$3/gm
                if $self->{optimise_size};
 
 #            s{
